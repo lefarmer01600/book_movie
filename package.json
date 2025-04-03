@@ -1,0 +1,25 @@
+{
+  "name": "book_movie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lefarmer01600/book_movie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lefarmer01600/book_movie/issues"
+  },
+  "homepage": "https://github.com/lefarmer01600/book_movie#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.1",
+    "express": "^5.1.0",
+    "nunjucks": "^3.2.4",
+    "tailwindcss": "^4.1.1"
+  }
+}
