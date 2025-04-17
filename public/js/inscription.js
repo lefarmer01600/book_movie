@@ -8,6 +8,7 @@ document.getElementById('submitRegister').addEventListener('click', async () => 
         email: formData.get('email'),
         passwordHash: CryptoJS.SHA256(formData.get('password')).toString(CryptoJS.enc.Base64),
     };
+    console.log("Données envoyées :", data);
 
     try {
         const response = await fetch('/api/users', {
