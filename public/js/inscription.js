@@ -5,11 +5,11 @@ document.getElementById('submitRegister').addEventListener('click', async () => 
     const data = {
         name: formData.get('name'),
         email: formData.get('email'),
-        password: formData.get('password'),
+        passwordHash: formData.get('password'),
     };
 
     try {
-        const response = await fetch('/register', {
+        const response = await fetch('/api/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ document.getElementById('submitRegister').addEventListener('click', async () => 
 
         if (response.ok) {
             alert('Inscription réussie !');
-            closeModal();
+            form.reset();
         } else {
             const error = await response.json();
             alert(`Erreur: ${error.message}`);

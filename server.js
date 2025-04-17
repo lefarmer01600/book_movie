@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const Movie = require("./src/model/movie");
-const Book = require("./src/model/book");
+const Movie = require("./src/model/Movie");
+const Book = require('./src/model/Book');
 const bookRoutes = require('./src/routes/books');
 const movieRoutes = require('./src/routes/movies');
+const userRoutes = require('./src/routes/users');
 
 const app = express();
 const PORT = 3000;
@@ -22,6 +23,7 @@ app.use(express.json());
 
 app.use('/api/books', bookRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/api/users', userRoutes);
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
