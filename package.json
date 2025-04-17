@@ -19,6 +19,7 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.1.1",
     "express": "^5.1.0",
+    "mongoose": "^8.13.2",
     "nunjucks": "^3.2.4",
     "tailwindcss": "^4.1.1"
   }
