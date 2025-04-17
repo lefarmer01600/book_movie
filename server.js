@@ -1,6 +1,10 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const Movie = require("./src/model/movie");
+const Book = require("./src/model/book");
+const bookRoutes = require('./src/routes/books');
+const movieRoutes = require('./src/routes/movies');
 
 const app = express();
 const PORT = 3000;
@@ -14,12 +18,21 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 // Export the mongoose connection to use in other files
 module.exports = mongoose.connection;
 
+app.use(express.json());
+
+app.use('/api/books', bookRoutes);
+app.use('/api/movies', movieRoutes);
+
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Route for the home page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/html', 'index.html'));
+});
+
+app.get('/adminpanel', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html', 'adminpanel.html'));
 });
 
 // Start the server
