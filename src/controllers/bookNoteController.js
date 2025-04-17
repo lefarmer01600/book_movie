@@ -1,5 +1,8 @@
 const BookNote = require('../model/BookNotes');
-const Book = require('../model/book');
+const Book = require('../model/Book');
+
+const mongoose = require('mongoose');
+
 
 exports.getAllNotes = async (req, res) => {
     try {
@@ -15,6 +18,36 @@ exports.getNoteById = async (req, res) => {
         const note = await BookNote.findById(req.params.id);
         if (!note) return res.status(404).json({ error: 'Note not found' });
         res.json(note);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.getCommentsByBookId = async (req, res) => {
+    try {
+        let bookId = req.params.bookId;
+
+        // Sanitize bookId (remove leading/trailing whitespace or invalid characters)
+        bookId = bookId.trim().replace(/^:/, '');
+
+        // Validate bookId
+        if (!bookId) {
+            return res.status(400).json({ error: 'bookId is required' });
+        }
+
+        // Check if bookId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(bookId)) {
+            return res.status(400).json({ error: 'Invalid bookId format' });
+        }
+
+        // Find all notes associated with the given book ID
+        const comments = await BookNote.find({ bookId: bookId });
+
+        if (!comments || comments.length === 0) {
+            return res.status(404).json({ error: 'No comments found for this book' });
+        }
+
+        res.json(comments);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

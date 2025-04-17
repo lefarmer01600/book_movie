@@ -7,5 +7,6 @@ router.post('/', bookNoteController.createNote);
 router.get('/:id', bookNoteController.getNoteById);
 router.put('/:id', bookNoteController.updateNote);
 router.delete('/:id', bookNoteController.deleteNote);
+router.get('/comments/:bookId', bookNoteController.getCommentsByBookId); 
 
 module.exports = router;

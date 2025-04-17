@@ -1,4 +1,7 @@
 const MovieNote = require('../model/MovieNotes');
+const Movie = require('../model/Movie'); 
+
+const mongoose = require('mongoose');
 
 exports.getAllNotes = async (req, res) => {
     try {
@@ -14,6 +17,37 @@ exports.getNoteById = async (req, res) => {
         const note = await MovieNote.findById(req.params.id);
         if (!note) return res.status(404).json({ error: 'Note not found' });
         res.json(note);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+
+exports.getCommentsByMovieId = async (req, res) => {
+    try {
+        let movieId = req.params.movieId;
+
+        // Sanitize movieId (remove leading/trailing whitespace or invalid characters)
+        movieId = movieId.trim().replace(/^:/, '');
+
+        // Validate movieId
+        if (!movieId) {
+            return res.status(400).json({ error: 'movieId is required' });
+        }
+
+        // Check if movieId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(movieId)) {
+            return res.status(400).json({ error: 'Invalid movieId format' });
+        }
+
+        // Find all notes associated with the given movie ID
+        const comments = await MovieNote.find({ movieId });
+
+        if (!comments || comments.length === 0) {
+            return res.status(404).json({ error: 'No comments found for this movie' });
+        }
+
+        res.json(comments);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

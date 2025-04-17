@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="btn btn-sm btn-outline" onclick="openEditModal('movie', '${movie._id}', '${movie.title}', '${movie.director}', '${movie.actors.join(', ')}', '${movie.category}')">Modifier</button>
             <button class="btn btn-sm btn-error text-white" onclick="deleteMovie('${movie._id}')">Supprimer</button>
           </div>
+          
         `;
             movieList.appendChild(div);
         });

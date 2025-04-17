@@ -74,5 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
         noteScenario.value = '';
         noteMiddle.value = '';
         noteEnd.value = '';
+
+        // Recharger la page pour afficher le nouveau commentaire
+        location.reload();
+
     });
 });
