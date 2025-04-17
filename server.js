@@ -37,6 +37,12 @@ app.get('/adminpanel', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/html', 'adminpanel.html'));
 });
 
+app.get('/inscription', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html', 'inscription.html'));
+});
+
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
