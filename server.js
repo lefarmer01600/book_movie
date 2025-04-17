@@ -41,6 +41,9 @@ app.get('/inscription', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/html', 'inscription.html'));
 });
 
+app.get('/connexion', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html', 'connexion.html'));
+});
 
 
 // Start the server
