@@ -5,7 +5,7 @@ document.querySelector('form').addEventListener('submit', async (event) => {
     const password = event.target[1].value;
 
     if (!email || !password) {
-        alert('Veuillez remplir tous les champs.');
+        showPopup('Veuillez remplir tous les champs.', 'error');
         return;
     }
 
@@ -25,16 +25,32 @@ document.querySelector('form').addEventListener('submit', async (event) => {
 
         if (response.ok) {
             const result = await response.json();
-            console.log('Connexion réussie :', result); // Ajout du console.log
-            alert('Connexion réussie !');
-            window.location.href = '/';
+            console.log('Connexion réussie :', result);
+            showPopup('Connexion réussie !', 'success');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
         } else {
             const error = await response.json();
-            console.log('Erreur lors de la connexion :', error); // Ajout du console.log
-            alert(`Erreur: ${error.message}`);
+            console.log('Erreur lors de la connexion :', error);
+            showPopup(`Erreur: ${error.message}`, 'error');
         }
     } catch (error) {
         console.error('Erreur:', error);
-        alert('Erreur lors de la connexion.');
+        showPopup('Erreur lors de la connexion.', 'error');
     }
 });
+
+function showPopup(message, type) {
+    const popupContainer = document.getElementById('popupContainer');
+    popupContainer.innerHTML = `
+        <div class="popup ${type === 'error' ? 'popup-error' : 'popup-success'}">
+            <p>${message}</p>
+        </div>
+    `;
+    popupContainer.classList.remove('hidden');
+
+    setTimeout(() => {
+        popupContainer.classList.add('hidden');
+    }, 3000);
+}
