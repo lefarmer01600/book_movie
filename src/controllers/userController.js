@@ -5,6 +5,13 @@ const saltRounds = 10;
 exports.createUser = async (req, res) => {
   try {
 
+    const { email } = req.body;
+
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Adresse email invalide.' });
+    }
+
     console.log('Données de l\'utilisateur:', req.body);
 
     // Check if the password is provided
