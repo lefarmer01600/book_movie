@@ -8,6 +8,6 @@ const bookNoteSchema = new mongoose.Schema({
   writingQuality: { type: Number, required: true },
   comment: { type: String },
   createdAt: { type: Date, default: Date.now }
-});
+}); 
 
 module.exports = mongoose.model("BookNote", bookNoteSchema);

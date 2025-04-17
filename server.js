@@ -5,6 +5,8 @@ const Movie = require("./src/model/movie");
 const Book = require("./src/model/book");
 const bookRoutes = require('./src/routes/books');
 const movieRoutes = require('./src/routes/movies');
+const bookNoteRoutes = require('./src/routes/bookNotes');
+const movieNoteRoutes = require('./src/routes/movieNotes');
 
 const app = express();
 const PORT = 3000;
@@ -22,6 +24,8 @@ app.use(express.json());
 
 app.use('/api/books', bookRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/api/book-notes', bookNoteRoutes);
+app.use('/api/movie-notes', movieNoteRoutes);
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
