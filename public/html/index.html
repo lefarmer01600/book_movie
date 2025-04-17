@@ -1,15 +1,69 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
+
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Server</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books & Movies</title>
+  <link rel="stylesheet" href="../css/output.css">
 </head>
+<body class="bg-base-200 min-h-screen p-6">
 
-<body>
-  <h1>Welcome to the Express HTML Server!</h1>
-  <button onclick="window.location.href='adminpanel'">Clique</button>
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-6 text-green-700">📚🎬 BOOKS & MOVIES</h1>
+
+    <!-- Search bar -->
+    <div class="flex justify-center mb-8">
+      <input type="text" placeholder="Rechercher un livre ou un film..." class="input input-bordered w-full max-w-xl shadow" id="searchInput" />
+    </div>
+
+    <!-- Tabs with tab content -->
+    <div class="tabs tabs-lift">
+      <!-- Tab 1: LIVRES -->
+      <input type="radio" name="media_tabs" class="tab" aria-label="Livres" checked />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <!-- Book Card -->
+        <div class="card bg-white shadow-xl mb-6 media-card">
+          <div class="card-body">
+            <h2 class="card-title">Le Petit Prince</h2>
+            <p><strong>Auteur :</strong> Antoine de Saint-Exupéry</p>
+            <p><strong>Éditeur :</strong> Gallimard</p>
+            <p><strong>Catégorie :</strong> Fiction / Philosophie</p>
+            <p><strong>Commentaires :</strong> Un conte poétique et profond.</p>
+            <p><strong>Note Moyenne :</strong> ⭐ 4.5 (15 notes)</p>
+            <div class="grid grid-cols-3 gap-4 mt-2 text-sm">
+              <p>📖 Scénario : ⭐⭐⭐⭐☆</p>
+              <p>🧙 Personnages : ⭐⭐⭐⭐⭐</p>
+              <p>✍️ Qualité d’écriture : ⭐⭐⭐⭐☆</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: FILMS -->
+      <input type="radio" name="media_tabs" class="tab" aria-label="Films" />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <!-- Movie Card -->
+        <div class="card bg-white shadow-xl mb-6 media-card">
+          <div class="card-body">
+            <h2 class="card-title">Inception</h2>
+            <p><strong>Réalisateur :</strong> Christopher Nolan</p>
+            <p><strong>Acteurs :</strong> Leonardo DiCaprio, Ellen Page, Tom Hardy</p>
+            <p><strong>Catégorie :</strong> Science-fiction / Thriller</p>
+            <p><strong>Commentaires :</strong> Une immersion brillante dans les rêves.</p>
+            <p><strong>Note Moyenne :</strong> ⭐ 4.7 (20 notes)</p>
+            <div class="grid grid-cols-3 gap-4 mt-2 text-sm">
+              <p>🧠 Scénario : ⭐⭐⭐⭐⭐</p>
+              <p>🎭 Jeu d’acteur : ⭐⭐⭐⭐☆</p>
+              <p>🎬 Qualité audio-visuelle : ⭐⭐⭐⭐⭐</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
