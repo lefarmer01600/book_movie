@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CRUD Films et Livres</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.8.0/dist/full.css" rel="stylesheet" />
+</head>
+
+<body class="bg-base-100 text-base-content p-6 space-y-8">
+
+  <h1 class="text-3xl font-bold">Gestion des Films et Livres</h1>
+
+  <!-- Formulaire Film -->
+  <div class="bg-base-200 p-4 rounded shadow space-y-2">
+    <h2 class="text-xl font-semibold">Ajouter un Film</h2>
+    <form id="addMovieForm" class="grid grid-cols-2 gap-4">
+      <input type="text" id="movieTitle" placeholder="Titre" class="input input-bordered" required />
+      <input type="text" id="movieActors" placeholder="Acteurs (séparés par virgules)" class="input input-bordered"
+        required />
+      <input type="text" id="movieDirector" placeholder="Réalisateur" class="input input-bordered" required />
+      <input type="text" id="movieCategory" placeholder="Catégorie" class="input input-bordered" required />
+      <div class="col-span-2">
+        <button type="submit" class="btn btn-primary w-full">Ajouter le Film</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Formulaire Livre -->
+  <div class="bg-base-200 p-4 rounded shadow space-y-2">
+    <h2 class="text-xl font-semibold">Ajouter un Livre</h2>
+    <form id="addBookForm" class="grid grid-cols-2 gap-4">
+      <input type="text" id="bookTitle" placeholder="Titre" class="input input-bordered" required />
+      <input type="text" id="bookAuthor" placeholder="Auteur" class="input input-bordered" required />
+      <input type="text" id="bookPublisher" placeholder="Éditeur" class="input input-bordered" required />
+      <input type="text" id="bookCategory" placeholder="Catégorie" class="input input-bordered" required />
+      <div class="col-span-2">
+        <button type="submit" class="btn btn-primary w-full">Ajouter le Livre</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Liste des Films -->
+  <div>
+    <h2 class="text-xl font-semibold mb-2">Films</h2>
+    <div id="movieList" class="grid gap-4"></div>
+  </div>
+
+  <!-- Liste des Livres -->
+  <div>
+    <h2 class="text-xl font-semibold mb-2">Livres</h2>
+    <div id="bookList" class="grid gap-4"></div>
+  </div>
+
+  <!-- Modal de modification -->
+  <input type="checkbox" id="editModal" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box w-full max-w-2xl">
+      <h3 class="font-bold text-lg" id="editModalTitle">Modifier</h3>
+      <form id="editForm" class="grid grid-cols-2 gap-4 mt-4">
+        <input type="hidden" id="editId" />
+        <input type="text" id="editTitle" placeholder="Titre" class="input input-bordered" required />
+        <input type="text" id="editField1" placeholder="Auteur / Réalisateur" class="input input-bordered" required />
+        <input type="text" id="editField2" placeholder="Éditeur / Acteurs (virgules)" class="input input-bordered" />
+        <input type="text" id="editCategory" placeholder="Catégorie" class="input input-bordered" required />
+        <input type="hidden" id="editType" />
+        <div class="col-span-2 flex justify-end">
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+      </form>
+      <div class="modal-action">
+        <label for="editModal" class="btn">Fermer</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/crudmoviebook.js"></script>
+
+  <div class="toast toast-end z-50" id="toastContainer"></div>
+</body>
+
+</html>
