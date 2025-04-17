@@ -12,10 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     movies.forEach(async movie => {
       const commentsRes = await fetch("api/movie-notes/comments/:" + movie._id);
       const comments = await commentsRes.json();
-    
+
       let commentsHTML = "";
-      if (comments.error !== undefined ) {
-        commentsHTML+= 'Pas de commentaires'
+      if (comments.error !== undefined) {
+        commentsHTML += 'Pas de commentaires'
       } else {
         comments.forEach(comment => {
           commentsHTML += `
@@ -24,28 +24,31 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
         });
       }
-    
+
       movieDisplay.innerHTML += `
-        <div class="card bg-white shadow-xl">
-          <div class="card-body">
-            <h2 class="card-title">${movie.title}</h2>
-            <p><strong>Réalisateur :</strong> ${movie.director}</p>
-            <p><strong>Acteurs :</strong> ${movie.actors.join(', ')}</p>
-            <p><strong>Catégorie :</strong> ${movie.category}</p>
-            <p><strong>Note Moyenne :</strong> ⭐ ${movie.averageRating.toFixed(1)} (${movie.totalRatings} notes)</p>
-            <button onclick="openCommentModal('movie', '${movie._id}')" class="btn btn-sm btn-outline btn-success mt-2">Ajouter un avis</button>
-          </div>
-          <div class="text-center mt-4">
-            <details class="collapse bg-base-100 rounded-lg shadow">
-              <summary class="collapse-title btn btn-success text-white">
-                Voir les commentaires
-              </summary>
-              <div class="collapse-content text-left space-y-2 pt-2">
-                ${commentsHTML || '<p>Aucun commentaire pour ce film.</p>'}
-              </div>
-            </details>
-          </div>
-        </div>`;
+  <div class="card bg-white shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">${movie.title}</h2>
+      <p><strong>Réalisateur :</strong> ${movie.director}</p>
+      <p><strong>Acteurs :</strong> ${movie.actors.join(', ')}</p>
+      <p><strong>Catégorie :</strong> ${movie.category}</p>
+      <p><strong>Note Moyenne :</strong> ⭐ ${movie.averageRating.toFixed(1)} (${movie.totalRatings} notes)</p>
+      <button onclick="openCommentModal('movie', '${movie._id}', this)" class="btn btn-sm btn-outline btn-success mt-2">
+        Ajouter un avis
+      </button>
+      <div id="commentDisplay-movie-${movie._id}" class="text-sm text-gray-600 mt-1"></div>
+    </div>
+    <div class="px-6 pb-4 flex justify-end">
+      <details class="collapse collapse-arrow w-auto bg-base-200 rounded-lg">
+        <summary class="collapse-title text-md font-semibold text-gray-700 hover:text-gray-800 cursor-pointer px-3 py-2">
+          Voir les commentaires
+        </summary>
+        <div class="collapse-content text-left space-y-2 pt-2 text-sm">
+          ${commentsHTML || '<p>Aucun commentaire pour ce film.</p>'}
+        </div>
+      </details>
+    </div>
+  </div>`;
     });
   }
 
@@ -62,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let commentsHTML = "";
 
-      if (comments.error !== undefined ) {
-        commentsHTML+= 'Pas de commentaires'
+      if (comments.error !== undefined) {
+        commentsHTML += 'Pas de commentaires'
       } else {
         comments.forEach(comment => {
           commentsHTML += `
@@ -76,27 +79,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       bookDisplay.innerHTML += `
-          <div class="card bg-white shadow-xl">
-            <div class="card-body">
-              <h2 class="card-title">${book.title}</h2>
-              <p><strong>Auteur :</strong> ${book.author}</p>
-              <p><strong>Éditeur :</strong> ${book.publisher}</p>
-              <p><strong>Catégorie :</strong> ${book.category}</p>
-              <p><strong>Note Moyenne :</strong> ⭐ ${book.averageRating.toFixed(1)} (${book.totalRatings} notes)</p>
-              <button onclick="openCommentModal('book', '${book._id}')" class="btn btn-sm btn-outline btn-success mt-2">Ajouter un avis</button>
-            </div>
-            <div class="text-center mt-4">
-            <details class="collapse bg-base-100 rounded-lg shadow">
-              <summary class="collapse-title btn btn-success text-white">
-                Voir les commentaires
-              </summary>
-              <div class="collapse-content text-left space-y-2 pt-2">
-                ${commentsHTML || '<p>Aucun commentaire pour ce film.</p>'}
-              </div>
-            </details>
-          </div>
+  <div class="card bg-white shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title">${book.title}</h2>
+      <p><strong>Auteur :</strong> ${book.author}</p>
+      <p><strong>Catégorie :</strong> ${book.category}</p>
+      <p><strong>Note Moyenne :</strong> ⭐ ${book.averageRating.toFixed(1)} (${book.totalRatings} notes)</p>
+      <button onclick="openCommentModal('book', '${book._id}', this)" class="btn btn-sm btn-outline btn-success mt-2">
+        Ajouter un avis
+      </button>
+      <div id="commentDisplay-book-${book._id}" class="text-sm text-gray-600 mt-1"></div>
+    </div>
+    <div class="px-6 pb-4 flex justify-end">
+      <details class="collapse collapse-arrow w-auto bg-base-200 rounded-lg">
+        <summary class="collapse-title text-md font-semibold text-gray-600 hover:text-gray-800 cursor-pointer px-3 py-2">
+          Voir les commentaires
+        </summary>
+        <div class="collapse-content text-left space-y-2 pt-2 text-sm">
+          ${commentsHTML || '<p>Aucun commentaire pour ce livre.</p>'}
         </div>
-        `;
+      </details>
+    </div>
+  </div>`;
     });
   }
 
