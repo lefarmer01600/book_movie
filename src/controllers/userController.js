@@ -3,29 +3,27 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 exports.createUser = async (req, res) => {
-  try {
+    try {
+        const { name, email, passwordHash } = req.body;
 
-    console.log('Données de l\'utilisateur:', req.body);
+        // Validation des champs requis
+        if (!name || !email || !passwordHash) {
+            return res.status(400).json({ message: 'Tous les champs sont requis.' });
+        }
 
-    // Check if the password is provided
-    if (!req.body.passwordHash) {
-      return res.status(400).json({ message: 'Le mot de passe est requis.' });
+        // Validation du format de l'email
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ message: 'Adresse email invalide.' });
+        }
+
+        // Création de l'utilisateur (exemple)
+        const newUser = { name, email, passwordHash }; // Remplacez par votre logique de sauvegarde
+        res.status(201).json(newUser);
+    } catch (error) {
+        console.error('Erreur serveur:', error);
+        res.status(500).json({ message: 'Erreur serveur.' });
     }
-
-
-
-    // Hash the password before saving the user
-    const hashedPassword = await bcrypt.hash(req.body.passwordHash, saltRounds);
-    const newUser = new User({
-      ...req.body,
-      passwordHash: hashedPassword, // Replace the plain password with the hashed one
-    });
-    await newUser.save();
-    res.status(201).json(newUser);
-  } catch (error) {
-    console.error('Erreur lors de la création de l\'utilisateur:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
 };
 
 exports.loginUser = async (req, res) => {
