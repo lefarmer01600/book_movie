@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const body = {
             comment: commentText.value,
             scenario: parseInt(noteScenario.value),
-            userId: "6800d2348beb20e27766e008",
+            userId: "6800dfecd9eab95dbe8c45bf",
         };
-        console.log(body);
+
         if (commentType.value === "movie") {
             body.acting = parseInt(noteMiddle.value);
             body.audioVisualQuality = parseInt(noteEnd.value);
