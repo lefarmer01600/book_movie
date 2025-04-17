@@ -136,3 +136,4 @@ dist
 .pnp.*
 
 public/css/output.css
+package.json
