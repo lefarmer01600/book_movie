@@ -1,3 +1,4 @@
+
 document.getElementById('submitRegister').addEventListener('click', async () => {
     const form = document.getElementById('registerForm');
     const formData = new FormData(form);
@@ -5,8 +6,9 @@ document.getElementById('submitRegister').addEventListener('click', async () => 
     const data = {
         name: formData.get('name'),
         email: formData.get('email'),
-        passwordHash: formData.get('password'),
+        passwordHash: CryptoJS.SHA256(formData.get('password')).toString(CryptoJS.enc.Base64),
     };
+
 
     try {
         const response = await fetch('/api/users', {

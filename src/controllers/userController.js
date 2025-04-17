@@ -1,9 +1,25 @@
 const User = require('../model/User');
-
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 exports.createUser = async (req, res) => {
   try {
-    const newUser = new User(req.body);
+
+    console.log('Données de l\'utilisateur:', req.body);
+
+    // Check if the password is provided
+    if (!req.body.passwordHash) {
+      return res.status(400).json({ message: 'Le mot de passe est requis.' });
+    }
+
+
+
+    // Hash the password before saving the user
+    const hashedPassword = await bcrypt.hash(req.body.passwordHash, saltRounds);
+    const newUser = new User({
+      ...req.body,
+      passwordHash: hashedPassword, // Replace the plain password with the hashed one
+    });
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {
