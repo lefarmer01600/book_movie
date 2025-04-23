@@ -7,6 +7,7 @@ const bookRoutes = require('./src/routes/books');
 const movieRoutes = require('./src/routes/movies');
 const bookNoteRoutes = require('./src/routes/bookNotes');
 const movieNoteRoutes = require('./src/routes/movieNotes');
+const userRoutes = require('./src/routes/users');
 
 const app = express();
 const PORT = 3000;
@@ -26,6 +27,7 @@ app.use('/api/books', bookRoutes);
 app.use('/api/movies', movieRoutes);
 app.use('/api/book-notes', bookNoteRoutes);
 app.use('/api/movie-notes', movieNoteRoutes);
+app.use('/api/users', userRoutes);
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -38,6 +40,15 @@ app.get('/', (req, res) => {
 app.get('/adminpanel', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/html', 'adminpanel.html'));
 });
+
+app.get('/inscription', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html', 'inscription.html'));
+});
+
+app.get('/connexion', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/html', 'connexion.html'));
+});
+
 
 // Start the server
 app.listen(PORT, () => {
