@@ -5,6 +5,8 @@ const Movie = require("./src/model/Movie");
 const Book = require("./src/model/Book");
 const bookRoutes = require('./src/routes/books');
 const movieRoutes = require('./src/routes/movies');
+const bookNoteRoutes = require('./src/routes/bookNotes');
+const movieNoteRoutes = require('./src/routes/movieNotes');
 const userRoutes = require('./src/routes/users');
 
 const app = express();
@@ -23,6 +25,8 @@ app.use(express.json());
 
 app.use('/api/books', bookRoutes);
 app.use('/api/movies', movieRoutes);
+app.use('/api/book-notes', bookNoteRoutes);
+app.use('/api/movie-notes', movieNoteRoutes);
 app.use('/api/users', userRoutes);
 
 // Serve static files from the "public" directory
