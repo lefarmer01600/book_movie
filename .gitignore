@@ -137,4 +137,4 @@ dist
 
 public/css/output.css
 package-lock.json
-    // Using SHA-256 (crypto-js) library to hash password client-side
+public/output.css
