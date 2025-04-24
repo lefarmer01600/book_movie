@@ -1,5 +1,5 @@
 const User = require('../model/User');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 const mongoose = require('mongoose');
 
@@ -19,7 +19,7 @@ exports.createUser = async (req, res) => {
     }
 
     // Création de l'utilisateur
-    const hashedPassword = await bcrypt.hash(req.body.passwordHash, saltRounds);
+    const hashedPassword = await bcryptjs.hash(req.body.passwordHash, saltRounds);
     const newUser = new User({
         name,
         email,
@@ -43,7 +43,7 @@ exports.loginUser = async (req, res) => {
       return res.status(404).json({ message: "Utilisateur non trouvé." });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.passwordHash);
+    const isPasswordValid = await bcryptjs.compare(password, user.passwordHash);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Mot de passe incorrect." });
     }
