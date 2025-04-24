@@ -35,8 +35,7 @@ pipeline {
     stage('Démarrer l\'app en production') {
       steps {
         echo 'Déploiement manuel ou scp à ajouter ici selon ton serveur cible.'
-        // Exemple simple si tu veux copier vers un VPS
-        // sh 'scp -r * user@ip_du_serveur:/chemin/vers/le/dossier/app'
+        sh 'npm start'
       }
     }
   }
