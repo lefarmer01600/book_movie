@@ -26,6 +26,12 @@ pipeline {
       }
     }
 
+    stage('Tests') {
+      steps {
+        // sh 'npm test'
+      }
+    }
+
     stage('Vérifier le serveur') {
       steps {
         echo 'Pas de tests automatisés pour le moment...'
