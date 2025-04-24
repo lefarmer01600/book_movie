@@ -1,0 +1,48 @@
+pipeline {
+  agent any
+
+  tools {
+    nodejs 'NodeJS_18'
+  }
+
+  environment {
+    MONGO_URI = 'mongodb://localhost:27017/book_movies'
+  }
+
+  stages {
+    stage('Cloner le projet') {
+      steps {
+        git 'https://github.com/lefarmer01600/book_movie.git'
+      }
+    }
+
+    stage('Installer les dépendances') {
+      steps {
+        sh 'npm install'
+      }
+    }
+
+    stage('Vérifier le serveur') {
+      steps {
+        echo 'Pas de tests automatisés pour le moment...'
+      }
+    }
+
+    stage('Démarrer l\'app en production') {
+      steps {
+        echo 'Déploiement manuel ou scp à ajouter ici selon ton serveur cible.'
+        // Exemple simple si tu veux copier vers un VPS
+        // sh 'scp -r * user@ip_du_serveur:/chemin/vers/le/dossier/app'
+      }
+    }
+  }
+
+  post {
+    success {
+      echo 'Déploiement réussi !'
+    }
+    failure {
+      echo 'Une erreur est survenue.'
+    }
+  }
+}
