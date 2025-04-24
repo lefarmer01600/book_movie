@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const session = require('express-session'); // Ajout pour gérer les sessions
 const Movie = require("./src/model/Movie");
 const Book = require("./src/model/Book");
 const bookRoutes = require('./src/routes/books');
