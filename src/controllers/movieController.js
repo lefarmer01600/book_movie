@@ -1,4 +1,4 @@
-const Movie = require('../model/movie');
+const Movie = require('../model/Movie');
 
 exports.getAllMovies = async (req, res) => {
   const movies = await Movie.find();
