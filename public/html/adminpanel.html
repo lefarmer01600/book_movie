@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CRUD Films et Livres</title>
+  <link rel="stylesheet" href="../css/output.css">
+</head>
+
+<body class="bg-base-100 min-h-screen p-8 flex flex-col items-center">
+
+  <!-- HEADER -->
+  <div class="w-full max-w-5xl flex flex-col items-center mb-10">
+    <div class="flex items-center justify-between w-full mb-4">
+      <div class="flex items-center gap-2">
+        <img src="https://img.icons8.com/ios/50/book.png" class="w-8 h-8" />
+        <img src="https://img.icons8.com/ios/50/movie-projector.png" class="w-8 h-8" />
+        <h1 class="text-4xl font-bold text-green-700">BOOKS & MOVIES</h1>
+      </div>
+      <!-- Bouton Accueil -->
+      <a href="/" class="btn btn-outline btn-success">Accueil</a>
+    </div>
+  </div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="w-full max-w-5xl space-y-10">
+
+    <!-- FORMULAIRE FILM -->
+    <div class="card bg-white shadow-md">
+      <div class="card-body">
+        <h2 class="card-title text-xl text-neutral">Ajouter un Film</h2>
+        <form id="addMovieForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <input type="text" id="movieTitle" placeholder="Titre" class="input input-bordered w-full" required />
+          <input type="text" id="movieActors" placeholder="Acteurs (séparés par virgules)"
+            class="input input-bordered w-full" required />
+          <input type="text" id="movieDirector" placeholder="Réalisateur" class="input input-bordered w-full"
+            required />
+          <input type="text" id="movieCategory" placeholder="Catégorie" class="input input-bordered w-full" required />
+          <div class="col-span-1 md:col-span-2">
+            <button type="submit" class="btn btn-success w-full">Ajouter le Film</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- FORMULAIRE LIVRE -->
+    <div class="card bg-white shadow-md">
+      <div class="card-body">
+        <h2 class="card-title text-xl text-neutral">Ajouter un Livre</h2>
+        <form id="addBookForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <input type="text" id="bookTitle" placeholder="Titre" class="input input-bordered w-full" required />
+          <input type="text" id="bookAuthor" placeholder="Auteur" class="input input-bordered w-full" required />
+          <input type="text" id="bookPublisher" placeholder="Éditeur" class="input input-bordered w-full" required />
+          <input type="text" id="bookCategory" placeholder="Catégorie" class="input input-bordered w-full" required />
+          <div class="col-span-1 md:col-span-2">
+            <button type="submit" class="btn btn-success w-full">Ajouter le Livre</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- LISTE DES FILMS -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4 text-neutral">Films</h2>
+      <div id="movieList" class="grid gap-4"></div>
+    </div>
+
+    <!-- LISTE DES LIVRES -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4 text-neutral">Livres</h2>
+      <div id="bookList" class="grid gap-4"></div>
+    </div>
+
+  </main>
+
+  <!-- MODAL DE MODIFICATION -->
+  <input type="checkbox" id="editModal" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box w-full max-w-2xl">
+      <h3 class="font-bold text-lg" id="editModalTitle">Modifier</h3>
+      <form id="editForm" class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <input type="hidden" id="editId" />
+        <input type="text" id="editTitle" placeholder="Titre" class="input input-bordered" required />
+        <input type="text" id="editField1" placeholder="Auteur / Réalisateur" class="input input-bordered" required />
+        <input type="text" id="editField2" placeholder="Éditeur / Acteurs" class="input input-bordered" />
+        <input type="text" id="editCategory" placeholder="Catégorie" class="input input-bordered" required />
+        <input type="hidden" id="editType" />
+        <div class="col-span-1 md:col-span-2 flex justify-end">
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+      </form>
+      <div class="modal-action">
+        <label for="editModal" class="btn">Fermer</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast toast-end z-50" id="toastContainer"></div>
+
+  <!-- JS -->
+  <script src="/js/crudmoviebook.js"></script>
+</body>
+
+</html>

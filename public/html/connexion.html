@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
+      integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link href="../css/output.css" rel="stylesheet" />
+  </head>
+  <body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+      <h2 class="text-2xl font-bold mb-4 text-center">Connexion</h2>
+      <form id="loginForm" class="space-y-4">
+        <input
+          type="email"
+          placeholder="Email utilisateur"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <input
+          type="password"
+          placeholder="Mot de passe"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+        >
+          Se connecter
+        </button>
+      </form>
+      <a
+        href="inscription"
+        class="block text-center text-green-500 mt-4 hover:underline"
+        >Crée un compte</a
+      >
+      <a
+        href="mdpoublie"
+        class="block text-center text-green-500 mt-4 hover:underline"
+        >Mot de passe oublié ?</a
+      >
+    </div>
+
+    <div
+      id="popupContainer"
+      class="hidden fixed bottom-4 right-4 bg-red-100 text-red-700 p-4 rounded-lg shadow-lg"
+    ></div>
+
+    <script src="../js/connexion.js"></script>
+  </body>
+</html>

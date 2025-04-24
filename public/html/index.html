@@ -1,11 +1,72 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Server</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books & Movies</title>
+  <link rel="stylesheet" href="../css/output.css">
 </head>
-<body>
-  <h1>Welcome to the Express HTML Server!</h1>
+
+<body class="bg-base-200 min-h-screen p-6">
+
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-6 text-green-700">📚🎬 BOOKS & MOVIES</h1>
+
+    <!-- Search bar -->
+    <div class="flex justify-center mb-8">
+      <input type="text" placeholder="Rechercher un livre ou un film..." class="input input-bordered w-full max-w-xl shadow" id="searchInput" />
+    </div>
+
+    <div class="flex justify-end mb-4">
+      <button onclick="window.location.href='adminpanel'" class="btn btn-primary bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow border border-green-500">
+        Admin Panel
+      </button>
+    </div>
+
+    <!-- Tabs with tab content -->
+    <div class="tabs tabs-lift">
+      <!-- Tab 1: LIVRES -->
+      <input type="radio" name="media_tabs" class="tab" aria-label="Livres" checked />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div id="bookDisplay" class="space-y-6"></div>
+      </div>
+
+      <!-- Tab 2: FILMS -->
+      <input type="radio" name="media_tabs" class="tab" aria-label="Films" />
+      <div class="tab-content bg-base-100 border-base-300 p-6">
+        <div id="movieDisplay" class="space-y-6"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal ajout commentaire/note -->
+  <input type="checkbox" id="commentModal" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box max-w-xl">
+      <h3 class="font-bold text-lg">Ajouter un avis</h3>
+      <form id="commentForm" class="space-y-4 mt-4">
+        <input type="hidden" id="commentType" /> <!-- 'book' ou 'movie' -->
+        <input type="hidden" id="itemId" /> <!-- ID du livre ou film -->
+
+        <input type="text" placeholder="Votre commentaire" class="textarea textarea-bordered w-full" id="commentText" required />
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <input type="number" min="0" max="5" step="1" placeholder="Scénario" class="input input-bordered" id="noteScenario" required />
+          <input type="number" min="0" max="5" step="1" placeholder="Acteurs/Personnages" class="input input-bordered" id="noteMiddle" required />
+          <input type="number" min="0" max="5" step="1" placeholder="Qualité visuelle/écriture" class="input input-bordered" id="noteEnd" required />
+        </div>
+
+        <div class="modal-action">
+          <label for="commentModal" class="btn">Annuler</label>
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast toast-end z-50" id="toastContainer"></div>
+  <script src="../js/elementdisplay.js"></script>
+  <script src="../js/addcomment.js"></script>
 </body>
 </html>
