@@ -18,9 +18,15 @@
     </div>
 
     <div class="flex justify-end mb-4">
-      <button onclick="window.location.href='adminpanel'" class="btn btn-primary bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow border border-green-500">
+      <a href="/adminpanel" id="adminPanelBtn" class="btn btn-primary bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow border border-green-500 hidden">
         Admin Panel
+      </a>
+      <button id="logoutBtn" class="btn btn-error text-white font-bold py-2 px-4 rounded shadow border border-red-500 hidden">
+        Déconnexion
       </button>
+      <a href="/connexion" id="loginBtn" class="btn btn-success text-white font-bold py-2 px-4 rounded shadow border border-green-500 hidden">
+        Connexion
+      </a>
     </div>
 
     <!-- Tabs with tab content -->
@@ -68,5 +74,6 @@
   <div class="toast toast-end z-50" id="toastContainer"></div>
   <script src="../js/elementdisplay.js"></script>
   <script src="../js/addcomment.js"></script>
+  <script src="../js/logout.js"></script>
 </body>
 </html>

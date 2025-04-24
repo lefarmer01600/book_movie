@@ -6,7 +6,13 @@ const mongoose = require('mongoose');
 
 exports.getAllNotes = async (req, res) => {
     try {
-        const notes = await BookNote.find();
+        const { userId, bookId } = req.query;
+        const filter = {};
+
+        if (userId) filter.userId = userId;
+        if (bookId) filter.bookId = bookId;
+
+        const notes = await BookNote.find(filter);
         res.json(notes);
     } catch (err) {
         res.status(500).json({ error: err.message });
