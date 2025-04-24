@@ -1,6 +1,10 @@
 pipeline {
   agent any
 
+  options {
+    skipDefaultCheckout()
+  }
+
   tools {
     nodejs 'NodeJS_18'
   }
@@ -10,9 +14,9 @@ pipeline {
   }
 
   stages {
-    stage('Cloner le projet') {
+    stage('Cloner le projet (main)') {
       steps {
-        git 'https://github.com/lefarmer01600/book_movie.git'
+        git branch: 'main', url: 'https://github.com/lefarmer01600/book_movie.git'
       }
     }
 
