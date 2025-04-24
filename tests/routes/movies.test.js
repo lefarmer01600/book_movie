@@ -1,9 +1,12 @@
 const assert = require('assert');
+const mongoose = require('mongoose'); // Import pour générer un ObjectId
 
 (() => {
   console.log("Running tests for movies routes...");
 
-  const mockRequest = { params: { id: 1 } };
+  const validObjectId = new mongoose.Types.ObjectId(); // Génère un ObjectId valide
+
+  const mockRequest = { params: { id: validObjectId.toString() } }; // Utilise l'ObjectId valide
   const mockResponse = {
     json: (data) => data,
     status: function (code) {

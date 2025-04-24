@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const Movie = require("./src/model/movie");
-const Book = require("./src/model/book");
+const Movie = require("./src/model/Movie");
+const Book = require("./src/model/Book");
 const bookRoutes = require('./src/routes/books');
 const movieRoutes = require('./src/routes/movies');
 
