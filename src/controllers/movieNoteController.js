@@ -5,7 +5,13 @@ const mongoose = require('mongoose');
 
 exports.getAllNotes = async (req, res) => {
     try {
-        const notes = await MovieNote.find();
+        const { userId, movieId } = req.query;
+        const filter = {};
+
+        if (userId) filter.userId = userId;
+        if (movieId) filter.movieId = movieId;
+
+        const notes = await MovieNote.find(filter);
         res.json(notes);
     } catch (err) {
         res.status(500).json({ error: err.message });
