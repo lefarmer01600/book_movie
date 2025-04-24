@@ -5,7 +5,7 @@ document.querySelector("form").addEventListener("submit", async (event) => {
   const password = event.target[1].value;
 
   if (!email || !password) {
-    showPopup("Veuillez remplir tous les champs.", "error");
+    alert("Veuillez remplir tous les champs.", "error");
     return;
   }
 
@@ -23,19 +23,22 @@ document.querySelector("form").addEventListener("submit", async (event) => {
       body: JSON.stringify(data),
     });
 
+    console.log("Réponse brute:", response);
+
     if (response.ok) {
       const result = await response.json();
-      showPopup("Connexion réussie !", "success");
+      console.log("Résultat de l'API:", result);
+      alert("Connexion réussie !", "success");
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/"; // Redirige vers le panneau admin après connexion réussie
       }, 2000);
     } else {
       const error = await response.json();
       console.log("Erreur lors de la connexion :", error);
-      showPopup(`Erreur: ${error.message}`, "error");
+      alert(`Erreur: ${error.message}`, "error");
     }
   } catch (error) {
     console.error("Erreur:", error);
-    showPopup("Erreur lors de la connexion.", "error");
+    alert("Erreur lors de la connexion.", "error");
   }
 });
